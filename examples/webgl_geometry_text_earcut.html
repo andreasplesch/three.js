@@ -57,8 +57,9 @@
 
 			THREE.ShapeUtils.triangulateShape = function ( contour, holes ) {
 			    var vertices = [];
+				
 
-			    addContour( vertices, contour );
+			    addContour( vertices, Array.from(contour) );
 
 			    var holeIndices = [];
 			    var holeIndex = contour.length;
