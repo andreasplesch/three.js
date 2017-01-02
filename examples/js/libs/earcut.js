@@ -143,7 +143,7 @@ function earcutLinked(data, ear, triangles, dim, minX, minY, size, pass) {
 
             // if this didn't work, try curing all small self-intersections locally
             } else if (pass === 1) {
-                ear = cureLocalIntersections(data, ear, triangles, dim);
+                //ear = cureLocalIntersections(data, ear, triangles, dim);
                 earcutLinked(data, ear, triangles, dim, minX, minY, size, 2);
 
             // as a last resort, try splitting the remaining polygon into two
