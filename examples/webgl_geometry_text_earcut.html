@@ -45,8 +45,7 @@
 
 
 		<!-- replace built-in triangulation with Earcut -->
-		<!--script src="//rawgit.com/mapbox/earcut/master/src/earcut.js"></script-->
-		<script src="js/libs/earcut.js"></script>
+		<script src="//rawgit.com/mapbox/earcut/master/src/earcut.js"></script>
 		<script>
 			function addContour( vertices, contour ) {
 			    for ( var i = 0; i < contour.length; i++ ) {
@@ -72,7 +71,7 @@
 			    var result = earcut( vertices, holeIndices, 2 );
 
 			    var grouped = [];
-			    for ( var i = 0; i < result.length; i += 3 ) {
+			    for ( var i = 0; i < result.length - 3 ; i += 3 ) {
 			        grouped.push( result.slice( i, i + 3 ) );
 			    }
 			    return grouped;
