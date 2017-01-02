@@ -127,10 +127,10 @@ function earcutLinked(data, ear, triangles, dim, minX, minY, size, pass) {
             removeNode(ear);
 
             // skipping the next vertice leads to less sliver triangles
-            //ear = next.next;
-            //stop = next.next;
-            ear = next;
-            stop = next;
+            ear = next.next;
+            stop = next.next;
+            //ear = next;
+            //stop = next;
 
             continue;
         }
@@ -150,7 +150,7 @@ function earcutLinked(data, ear, triangles, dim, minX, minY, size, pass) {
 
             // as a last resort, try splitting the remaining polygon into two
             } else if (pass === 2) {
-                splitEarcut(data, ear, triangles, dim, minX, minY, size);
+                //splitEarcut(data, ear, triangles, dim, minX, minY, size);
             }
 
             break;
