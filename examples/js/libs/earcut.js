@@ -83,7 +83,7 @@ function linkedList(data, start, end, dim, clockwise) {
 function filterPoints(data, start, end) {
     if (!start) return start;
     if (!end) end = start;
-
+    /*
     var node = start,
         again;
     do {
@@ -99,7 +99,7 @@ function filterPoints(data, start, end) {
             node = node.next;
         }
     } while (again || node !== end);
-
+    */
     return end;
 }
 
