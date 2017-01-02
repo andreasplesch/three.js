@@ -54,12 +54,22 @@
 			        vertices.push( contour[i].y );
 			    }
 			}
+			
+			function removeDupEndPts(points) {
+				var l = points.length;
+				if ( l > 2 && points[ l - 1 ].equals( points[ 0 ] ) ) {
+					points.pop();
+				}
+			}
 
 			THREE.ShapeUtils.triangulateShape = function ( contour, holes ) {
-			    var vertices = [];
 				
+				removeDupEndPts( contour );
+				holes.forEach( removeDupEndPts );
 
-			    addContour( vertices, Array.from(contour) );
+			    var vertices = [];
+
+			    addContour( vertices, contour );
 
 			    var holeIndices = [];
 			    var holeIndex = contour.length;
