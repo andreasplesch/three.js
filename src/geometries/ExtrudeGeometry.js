@@ -1,10 +1,8 @@
-/*
 import { Geometry } from '../core/Geometry';
 import { Vector2 } from '../math/Vector2';
 import { Face3 } from '../core/Face3';
 import { Vector3 } from '../math/Vector3';
 import { ShapeUtils } from '../extras/ShapeUtils';
-*/
 
 /**
  * @author zz85 / http://www.lab4games.net/zz85/blog
