@@ -19,6 +19,8 @@ import { ShapeUtils } from '../extras/ShapeUtils';
  *  bevelThickness: <float>, // how deep into the original shape bevel goes
  *  bevelSize: <float>, // how far from shape outline is bevel
  *  bevelSegments: <int>, // number of bevel layers
+ *  bevelShape: <float>, // roundness of bevel, 
+ *    0 < bevelShape < large, 1 is regular, 2 is straight, 0.01 is corner, > 2 is concave
  *
  *  extrudePath: <THREE.Curve> // curve to extrude shape along
  *  frames: <Object> // containing arrays of tangents, normals, binormals
@@ -80,7 +82,9 @@ ExtrudeGeometry.prototype.addShape = function ( shape, options ) {
 	var bevelThickness = options.bevelThickness !== undefined ? options.bevelThickness : 6; // 10
 	var bevelSize = options.bevelSize !== undefined ? options.bevelSize : bevelThickness - 2; // 8
 	var bevelSegments = options.bevelSegments !== undefined ? options.bevelSegments : 3;
-
+	var bevelShape = options.bevelShape !== undefined ? options.bevelShape : 1; // 1
+	bevelShape = bevelShape <= 0 ? 0.001 : bevelShape; //clamp above 0
+	
 	var bevelEnabled = options.bevelEnabled !== undefined ? options.bevelEnabled : true; // false
 
 	var curveSegments = options.curveSegments !== undefined ? options.curveSegments : 12;
@@ -358,9 +362,10 @@ ExtrudeGeometry.prototype.addShape = function ( shape, options ) {
 
 		//for ( b = bevelSegments; b > 0; b -- ) {
 
-		t = b / bevelSegments;
-		z = bevelThickness * Math.cos( t * Math.PI / 2 );
-		bs = bevelSize * Math.sin( t * Math.PI / 2 );
+		t = ( b / bevelSegments ) * Math.PI / 2; // radial angle
+		t = Math.atan( Math.pow ( Math.tan( t ), 1 / bevelShape ) ); //adjust spacing
+		z = bevelThickness * Math.pow( Math.cos( t ), bevelShape );
+		bs = bevelSize * Math.pow( Math.sin( t ), bevelShape );
 
 		// contract shape
 
@@ -456,9 +461,10 @@ ExtrudeGeometry.prototype.addShape = function ( shape, options ) {
 	//for ( b = 1; b <= bevelSegments; b ++ ) {
 	for ( b = bevelSegments - 1; b >= 0; b -- ) {
 
-		t = b / bevelSegments;
-		z = bevelThickness * Math.cos ( t * Math.PI / 2 );
-		bs = bevelSize * Math.sin( t * Math.PI / 2 );
+		t = ( b / bevelSegments ) * Math.PI / 2; // radial angle
+		t = Math.atan( Math.pow ( Math.tan( t ), 1 / bevelShape ) ); //adjust spacing
+		z = bevelThickness * Math.pow( Math.cos( t ), bevelShape );
+		bs = bevelSize * Math.pow( Math.sin( t ), bevelShape );
 
 		// contract shape
 
