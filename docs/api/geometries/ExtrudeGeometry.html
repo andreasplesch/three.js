@@ -5,6 +5,10 @@
 		<base href="../../" />
 		<script src="list.js"></script>
 		<script src="page.js"></script>
+		<script src=
+			"//rawgit.com/andreasplesch/three.js/893f72a561873165dacf5e0f47dab0c452830a67/src/geometries/ExtrudeGeometry.js"
+			></script>
+
 		<link type="text/css" rel="stylesheet" href="page.css" />
 	</head>
 	<body>
@@ -51,7 +55,8 @@
 			bevelEnabled: true,
 			bevelThickness: 1,
 			bevelSize: 1,
-			bevelSegments: 1
+			bevelSegments: 5
+			bevelShape: 0.2
 		};
 
 		var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
@@ -77,6 +82,7 @@
 				<li>bevelThickness —  float. how deep into the original shape bevel goes</li>
 				<li>bevelSize —  float. how far from shape outline is bevel</li>
 				<li>bevelSegments —  int. number of bevel layers</li>
+				<li>bevelShape —  roundedness of bevel, 0.01: corner, 1: circle, 2: straight, >2: concave</li>
 				<li>extrudePath —  THREE.CurvePath. 3d spline path to extrude shape along. (creates Frames if frames aren't defined)</li>
 				<li>frames —  THREE.TubeGeometry.FrenetFrames.  containing arrays of tangents, normals, binormals</li>
 				<li>material —  int. material index for front and back faces</li>
@@ -107,6 +113,7 @@
 				<li>bevelThickness —  float. how deep into the original shape bevel goes</li>
 				<li>bevelSize —  float. how far from shape outline is bevel</li>
 				<li>bevelSegments —  int. number of bevel layers</li>
+				<li>bevelShape —  shape of bevel</li>
 				<li>extrudePath —  THREE.Curve. curve to extrude shape along</li>
 				<li>frames —  Object.  containing arrays of tangents, normals, binormals</li>
 				<li>material —  int. material index for front and back faces</li>
@@ -127,6 +134,7 @@
 				<li>bevelEnabled —  bool. turn on bevel</li>
 				<li>bevelThickness —  float. how deep into the original shape bevel goes</li>
 				<li>bevelSize —  float. how far from shape outline is bevel</li>
+				<li>bevelShape —  shape of bevel</li>
 				<li>bevelSegments —  int. number of bevel layers</li>
 				<li>extrudePath —  THREE.Curve. curve to extrude shape along</li>
 				<li>frames —  Object.  containing arrays of tangents, normals, binormals</li>
