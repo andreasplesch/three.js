@@ -1,9 +1,18 @@
+/*
 import { Geometry } from '../core/Geometry';
 import { Vector2 } from '../math/Vector2';
 import { Face3 } from '../core/Face3';
 import { Vector3 } from '../math/Vector3';
 import { ShapeUtils } from '../extras/ShapeUtils';
-
+*/
+ var  Geometry = THREE.Geometry, 
+     Vector2 = THREE.Vector2,
+     Face3 = THREE.Face3,
+  	Vector3 = THREE.Vector3,
+     ShapeUtils = THREE.ShapeUtils;
+     
+ 
+ 
 /**
  * @author zz85 / http://www.lab4games.net/zz85/blog
  *
@@ -710,5 +719,6 @@ ExtrudeGeometry.WorldUVGenerator = {
 	}
 };
 
-
-export { ExtrudeGeometry };
+ 
+//export { ExtrudeGeometry }
+ THREE.ExtrudeGeometry = ExtrudeGeometry ;
