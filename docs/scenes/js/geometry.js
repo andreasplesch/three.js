@@ -1267,7 +1267,9 @@ var guis = {
 			bevelEnabled: true,
 			bevelThickness: 1,
 			bevelSize: 1,
-			bevelSegments: 1
+			bevelSegments: 5,
+			
+ bevelShape: 0.6
 		};
 
 		var length = 12, width = 8;
