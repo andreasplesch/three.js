@@ -1267,9 +1267,8 @@ var guis = {
 			bevelEnabled: true,
 			bevelThickness: 1,
 			bevelSize: 1,
-			bevelSegments: 5,
-			
- bevelShape: 0.6
+			bevelSegments: 6,
+			bevelShape: 0.6
 		};
 
 		var length = 12, width = 8;
@@ -1296,7 +1295,7 @@ var guis = {
 		folder.add( data, 'bevelThickness', 1, 5 ).step( 1 ).onChange( generateGeometry );
 		folder.add( data, 'bevelSize', 1, 5 ).step( 1 ).onChange( generateGeometry );
 		folder.add( data, 'bevelSegments', 1, 5 ).step( 1 ).onChange( generateGeometry );
-		folder.add( data, 'bevelShape', 0.1,3   ).step( 0.1 ).onChange( generateGeometry );
+		folder.add( data, 'bevelShape', -4, 4 ).step( 0.01 ).onChange( generateGeometry );
 
 		generateGeometry();
 
