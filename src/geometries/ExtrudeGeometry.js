@@ -91,9 +91,9 @@ ExtrudeGeometry.prototype.addShape = function ( shape, options ) {
 	var bevelThickness = options.bevelThickness !== undefined ? options.bevelThickness : 6; // 10
 	var bevelSize = options.bevelSize !== undefined ? options.bevelSize : bevelThickness - 2; // 8
 	var bevelSegments = options.bevelSegments !== undefined ? options.bevelSegments : 3;
-	var bevelShape = options.bevelShape !== undefined ? options.bevelShape : 0; // 1
+	var bevelShape = options.bevelShape !== undefined ? options.bevelShape : 1; // 1
 	//bevelShape = bevelShape <= 0 ? 0.001 : bevelShape; //clamp above 0
-	bevelShape = Math.pow( 2, bevelShape ); //advantages: always positive, symmetric, 0 and 1 work out
+	bevelShape = Math.pow( 2, 1 - bevelShape ); //advantages: always positive, symmetric, 0 and 1 work out
 	
 	var bevelEnabled = options.bevelEnabled !== undefined ? options.bevelEnabled : true; // false
 
