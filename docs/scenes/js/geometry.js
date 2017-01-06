@@ -1296,6 +1296,7 @@ var guis = {
 		folder.add( data, 'bevelThickness', 1, 5 ).step( 1 ).onChange( generateGeometry );
 		folder.add( data, 'bevelSize', 1, 5 ).step( 1 ).onChange( generateGeometry );
 		folder.add( data, 'bevelSegments', 1, 5 ).step( 1 ).onChange( generateGeometry );
+		folder.add( data, 'bevelShape', 0,9   ).step( 0.1 ).onChange( generateGeometry );
 
 		generateGeometry();
 
