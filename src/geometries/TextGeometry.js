@@ -1,5 +1,7 @@
-import { ExtrudeGeometry } from './ExtrudeGeometry';
-import { Geometry } from '../core/Geometry';
+// import { ExtrudeGeometry } from './ExtrudeGeometry';
+// import { Geometry } from '../core/Geometry';
+var 	ExtrudeGeometry = THREE.ExtrudeGeometry,
+	Geomtetry = THREE.Geometry;
 
 /**
  * @author zz85 / http://www.lab4games.net/zz85/blog
@@ -55,4 +57,5 @@ TextGeometry.prototype = Object.create( ExtrudeGeometry.prototype );
 TextGeometry.prototype.constructor = TextGeometry;
 
 
-export { TextGeometry };
+// export { TextGeometry };
+THREE.TextGeometry = TextGeometry ;
