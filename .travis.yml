@@ -13,3 +13,5 @@ deploy:
   api_key: GithubPersonalAccessToken
   file: build/three.js
   skip_cleanup: true
+  on:
+    all_branches: true
