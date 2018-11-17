@@ -11,8 +11,8 @@ before_deploy:
   - git tag "r99AP-alpha"
 deploy:
   provider: releases
-  api_key: 
-    secure: GithubPersonalAccessToken
+  api_key: $GithubPersonalAccessToken
+  #  secure: GithubPersonalAccessToken
   file: build/three.js
   skip_cleanup: true
   on:
