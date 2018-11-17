@@ -1,26 +1,29 @@
+branches:
+  only:
+  - texSubImage2D
 language: node_js
 node_js:
   - node
 script:
-  - releaseTag=r99AP-alpha
-  - export releaseTag
-  - echo $releaseTag
-  - echo https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag}
-  - release_json=$(curl https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag})
-  - echo $release_json
-  - export release_json
-  - release_id=$(node -e "console.log(${release_json}['id'])")
-  - echo $release_id
-  - curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=${GithubPersonalAccessToken}
-  - echo https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=
+  #- releaseTag=r99AP-alpha
+  #- export releaseTag
+  #- echo $releaseTag
+  #- echo https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag}
+  #- release_json=$(curl https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag})
+  #- echo $release_json
+  #- export release_json
+  #- release_id=$(node -e "console.log(${release_json}['id'])")
+  #- echo $release_id
+  #- curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=${GithubPersonalAccessToken}
+  #- echo https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=
   # DELETE /repos/:owner/:repo/releases/:release_id
   - npm run build
 before_deploy:
 # Set up git user name and tag this commit
   - git config --local user.name "andreasplesch"
   - git config --local user.email "andreasplesch@gmail.com"
-#  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  - git tag $releaseTag
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+#  - git tag $releaseTag
 deploy:
   provider: releases
   api_key: $GithubPersonalAccessToken
