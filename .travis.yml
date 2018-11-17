@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - node
 script:
+  - curl -H "Authorization: token ${GithubPersonalAccessToken}" -X https://api.github.com/repos/andreasplesch/three.js/releases/r99AP-alpha 
+  # DELETE /repos/:owner/:repo/releases/:release_id
   - npm run build
 before_deploy:
 # Set up git user name and tag this commit
