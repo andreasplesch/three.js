@@ -3,9 +3,12 @@ node_js:
   - node
 script:
   - releaseTag=r99AP-alpha
+  - export releaseTag
   - echo $releaseTag
+  - echo https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag}
   - release_json=$(curl https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag})
   - echo $release_json
+  - export release_json
   - release_id=$(node -e "console.log(${release_json}['id'])")
   - echo $release_id
   - curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=${GithubPersonalAccessToken}
