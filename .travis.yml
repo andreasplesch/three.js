@@ -10,6 +10,6 @@ before_deploy:
       - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
     deploy:
       provider: releases
-      api_key: $GithubPersonalAccessToken
+      api_key: GithubPersonalAccessToken
       file: build/three.js
       skip_cleanup: true
