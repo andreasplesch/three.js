@@ -8,7 +8,7 @@ before_deploy:
   - git config --local user.name "andreasplesch"
   - git config --local user.email "andreasplesch@gmail.com"
 #  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  - git tag "test build"
+  - git tag "r99AP-alpha"
 deploy:
   provider: releases
   api_key: 
