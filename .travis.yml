@@ -4,8 +4,11 @@ node_js:
 script:
   - releaseTag='r99AP-alpha'
   - release_json=$(curl https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag})
+  - echo $release_json
   - release_id=$(node -e "console.log(${release_json}['id'])")
-  - curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=${GithubPersonalAccessToken} 
+  - echo $release_id
+  - curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=${GithubPersonalAccessToken}
+  - echo https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=
   # DELETE /repos/:owner/:repo/releases/:release_id
   - npm run build
 before_deploy:
