@@ -28,7 +28,8 @@ deploy:
   provider: releases
   api_key: $GithubPersonalAccessToken
   #  secure: GithubPersonalAccessToken
-  file: build/three.js
+  file_glob: true
+  file: build/*
   skip_cleanup: true
   on:
     all_branches: true
