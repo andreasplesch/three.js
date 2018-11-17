@@ -239,7 +239,8 @@ var files = {
 		"webgl_test_memory2",
 		"webgl_tonemapping",
 		"webgl_trails",
-		"webgl_video_panorama_equirectangular"
+		"webgl_video_panorama_equirectangular",
+		"webgl_video_panorama_equirectangular_sub"
 	],
 	"webgl / advanced": [
 		"webgl_buffergeometry",
@@ -276,6 +277,7 @@ var files = {
 		"webvr_rollercoaster",
 		"webvr_shadow",
 		"webvr_video",
+		"webvr_video_sub",
 		"webvr_vive",
 		"webvr_vive_dragging",
 		"webvr_vive_paint",
