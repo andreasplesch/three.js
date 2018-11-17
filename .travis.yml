@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - node
 script:
-  - releaseTag='r99AP-alpha'
+  - releaseTag=r99AP-alpha
+  - echo $releaseTag
   - release_json=$(curl https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag})
   - echo $release_json
   - release_id=$(node -e "console.log(${release_json}['id'])")
