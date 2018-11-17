@@ -2,7 +2,10 @@ language: node_js
 node_js:
   - node
 script:
-  - curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/r99AP-alpha?access_token=${GithubPersonalAccessToken} 
+  - releaseTag='r99AP-alpha'
+  - release_json=$(curl https://api.github.com/repos/andreasplesch/three.js/releases/tags/${releaseTag})
+  - release_id=$(node -e "console.log(${release_json}['id'])")
+  - curl -X "DELETE" https://api.github.com/repos/andreasplesch/three.js/releases/${release_id}?access_token=${GithubPersonalAccessToken} 
   # DELETE /repos/:owner/:repo/releases/:release_id
   - npm run build
 before_deploy:
@@ -10,7 +13,7 @@ before_deploy:
   - git config --local user.name "andreasplesch"
   - git config --local user.email "andreasplesch@gmail.com"
 #  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  - git tag "r99AP-alpha"
+  - git tag $releaseTag
 deploy:
   provider: releases
   api_key: $GithubPersonalAccessToken
