@@ -2,4 +2,14 @@ language: node_js
 node_js:
   - node
 script:
-  - npm run travis
+  - npm run build
+before_deploy:
+# Set up git user name and tag this commit
+  - git config --local user.name "andreasplesch"
+  - git config --local user.email "andreasplesch@gmail.com"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+deploy:
+  provider: releases
+  api_key: GithubPersonalAccessToken
+  file: build/three.js
+  skip_cleanup: true
