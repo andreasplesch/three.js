@@ -675,13 +675,25 @@ function WebGLTextures( _gl, extensions, state, properties, capabilities, utils,
 
 			} else {
 
-				state.texImage2D( _gl.TEXTURE_2D, 0, glInternalFormat, glFormat, glType, image );
-				textureProperties.__maxMipLevel = 0;
+					if ( texture.uploadedOnce ) {
+						
+						state.texSubImage2D( _gl.TEXTURE_2D, 0, 0, 0, glFormat, glType, image );
+					
+					}
 
+					else {
+						
+						state.texImage2D( _gl.TEXTURE_2D, 0, glInternalFormat, glFormat, glType, image );
+						texture.uploadedOnce = true;
+					
+					}
+				
+					textureProperties.__maxMipLevel = 0;
+			
 			}
-
+			
 		}
-
+		
 		if ( textureNeedsGenerateMipmaps( texture, isPowerOfTwoImage ) ) {
 
 			generateMipmap( _gl.TEXTURE_2D, texture, image.width, image.height );
