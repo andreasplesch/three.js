@@ -101,9 +101,10 @@
 				
 				var gui = new dat.GUI();
 				gui.add( params, 'movie', [ 
-					'Dolphin.mp4', 'pano.webm'
+					'Dolphin.mp4', 
+					'pano.webm'
 				] ).onFinishChange( function () {
-					video.src = 'textures' + params.movie;
+					video.src = 'textures/' + params.movie;
 					video.play();
 					});
 				gui.open();
@@ -131,7 +132,7 @@
 
 			function onDocumentMouseDown( event ) {
 
-				event.preventDefault();
+				//event.preventDefault();
 
 				isUserInteracting = true;
 
