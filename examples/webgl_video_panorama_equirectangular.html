@@ -101,8 +101,8 @@
 				
 				var gui = new dat.GUI();
 				gui.add( params, 'movie', [ 
-					'Dolphin.mp4', 
-					'pano.webm'
+					'1920x1080_30fps': 'Dolphin.mp4', 
+					'1920x1080_25fps': 'pano.webm'
 				] ).onFinishChange( function () {
 					video.src = 'textures/' + params.movie;
 					video.play();
