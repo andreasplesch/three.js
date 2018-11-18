@@ -34,10 +34,14 @@
 		<script src="https://github.com/andreasplesch/three.js/releases/download/20181117212624-a5d3581/three.js"></script>
 		
 		<script src="js/libs/stats.min.js"></script>
+		<script src="js/libs/dat.gui.min.js"></script>
 
 		<script>
 
-			var camera, scene, renderer, stats;
+			var camera, scene, renderer, stats, video;
+			var params = {
+				movie: 'Dolphin.mp4'
+			};
 
 			var texture_placeholder,
 			isUserInteracting = false,
@@ -68,7 +72,7 @@
 				var geometry = new THREE.SphereBufferGeometry( 500, 60, 40 );
 				geometry.scale( - 1, 1, 1 );
 
-				var video = document.createElement( 'video' );
+				video = document.createElement( 'video' );
 				video.width = 640;
 				video.height = 360;
 				video.loop = true;
@@ -94,6 +98,17 @@
 				
 				stats = new Stats();
 				container.appendChild( stats.dom );
+				
+				var gui = new dat.GUI();
+				gui.add( params, 'movie', { 
+					'1920x1080': 'Dolphin.mp4', 
+					'small': 'pano.webm'
+				} ).onFinishChange( function () {
+					video.src = 'textures/' + params.movie;
+					video.play();
+					});
+				gui.open();
+
 
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
@@ -117,7 +132,7 @@
 
 			function onDocumentMouseDown( event ) {
 
-				event.preventDefault();
+				//event.preventDefault();
 
 				isUserInteracting = true;
 
@@ -157,7 +172,7 @@
 				requestAnimationFrame( animate );
 				update();
 				stats.update();
-
+				
 			}
 
 			function update() {
