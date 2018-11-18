@@ -37,6 +37,9 @@
 		</div>
 
 		<script src="https://github.com/andreasplesch/three.js/releases/download/20181117210408-0f4510f/three.js"></script>
+		
+		<script src="js/libs/stats.min.js"></script>
+		<script src="js/libs/dat.gui.min.js"></script>
 
 		<script src="js/vr/WebVR.js"></script>
 
@@ -44,6 +47,10 @@
 
 			var camera, scene, renderer;
 			var video, texture;
+			var stats, material
+			var params = {
+				movie: 'Dolphin.mp4'
+			};
 
 			init();
 			animate();
@@ -83,6 +90,7 @@
 						texture.needsUpdate = true;
 
 					}
+					stats.update();
 
 				}, 1000 / 24 );
 
@@ -138,6 +146,25 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.vr.enabled = true;
 				container.appendChild( renderer.domElement );
+				stats = new Stats();
+				container.appendChild( stats.dom );
+				
+				var gui = new dat.GUI();
+				gui.add( params, 'movie', { 
+					'1920x1080_30fps': 'Dolphin.mp4', 
+					'1920x1080_25fps': 'pano.webm',
+					'3168x1584_30fps': 'city.mp4',
+					'2048x1024_24fps': 'MaryOculus.webm'
+				} ).onFinishChange( function () {
+					material.map.dispose();
+					video.src = 'textures/' + params.movie;
+					var texture = new THREE.VideoTexture( video );
+					texture.minFilter = THREE.LinearFilter;
+					texture.format = THREE.RGBFormat;
+					material.map = texture;
+					video.play();
+					});
+				gui.open();
 
 				document.body.appendChild( WEBVR.createButton( renderer, { frameOfReferenceType: 'head-model' } ) );
 
