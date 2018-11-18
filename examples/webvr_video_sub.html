@@ -47,7 +47,7 @@
 
 			var camera, scene, renderer;
 			var video, texture;
-			var stats, material
+			var stats, materialr, materiall;
 			var params = {
 				movie: 'Dolphin.mp4'
 			};
@@ -111,9 +111,9 @@
 
 				}
 
-				var material = new THREE.MeshBasicMaterial( { map: texture } );
+				materiall = new THREE.MeshBasicMaterial( { map: texture } );
 
-				var mesh = new THREE.Mesh( geometry, material );
+				var mesh = new THREE.Mesh( geometry, materiall );
 				mesh.rotation.y = - Math.PI / 2;
 				mesh.layers.set( 1 ); // display in left eye only
 				scene.add( mesh );
@@ -132,9 +132,9 @@
 
 				}
 
-				var material = new THREE.MeshBasicMaterial( { map: texture } );
+				materialr = new THREE.MeshBasicMaterial( { map: texture } );
 
-				var mesh = new THREE.Mesh( geometry, material );
+				var mesh = new THREE.Mesh( geometry, materialr );
 				mesh.rotation.y = - Math.PI / 2;
 				mesh.layers.set( 2 ); // display in right eye only
 				scene.add( mesh );
@@ -156,12 +156,14 @@
 					'3168x1584_30fps': 'city.mp4',
 					'2048x1024_24fps': 'MaryOculus.webm'
 				} ).onFinishChange( function () {
-					material.map.dispose();
+					materiall.map.dispose();
+					materialr.map.dispose();
 					video.src = 'textures/' + params.movie;
 					var texture = new THREE.VideoTexture( video );
 					texture.minFilter = THREE.LinearFilter;
 					texture.format = THREE.RGBFormat;
-					material.map = texture;
+					materiall.map = texture;
+					materialr.map = texture;
 					video.play();
 					});
 				gui.open();
